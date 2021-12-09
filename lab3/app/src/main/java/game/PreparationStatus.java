@@ -1,0 +1,15 @@
+package game;
+
+public enum PreparationStatus {
+    NONE,
+    FOURDECK,
+    THREEDECKFIRST,
+    THREEDECKSECOND,
+    TWODECKFIRST,
+    TWODECKSECOND,
+    TWODECKTHIRD,
+    ONEDECKFIRST,
+    ONEDECKSECOND,
+    ONEDECKTHIRD,
+    ONEDECKFORTH;
+}

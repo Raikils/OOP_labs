@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Knifes>
+   <Knife ID="frerge12">
+      <Type>knife</Type>
+      <Handy>one-handed</Handy>
+      <Origin>Ukrain</Origin>
+      <Visual>
+         <Length>14.5</Length>
+         <Width>23.4</Width>
+         <Material>copper</Material>
+         <Handle>wood</Handle>
+         <WoodType>oak</WoodType>
+         <Bloodstream>false</Bloodstream>
+      </Visual>
+      <Value>true</Value>
+   </Knife>
+   <Knife ID="grtew23">
+      <Type>knife</Type>
+      <Handy>twohanded</Handy>
+      <Origin>USA</Origin>
+      <Visual>
+         <Length>50.2</Length>
+         <Width>22.2</Width>
+         <Material>steel</Material>
+         <Handle>metal</Handle>
+         <WoodType></WoodType>
+         <Bloodstream>true</Bloodstream>
+      </Visual>
+      <Value>false</Value>
+   </Knife>
+</Knifes>

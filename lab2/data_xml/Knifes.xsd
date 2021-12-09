@@ -1,0 +1,78 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Knifes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Knife" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="knife"/>
+                    <xs:enumeration value="dagger"/>
+                    <xs:enumeration value="saber"/>
+                    <xs:enumeration value="sword"/>
+                    <xs:enumeration value="katana"/>
+                    <xs:enumeration value="broadsword"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Handy">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="one-handed|twohanded"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element type="xs:string" name="Origin"/>
+              <xs:element name="Visual">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Length">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:float">
+                          <xs:minInclusive value="10"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Width">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:float">
+                          <xs:minInclusive value="10"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Material">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="copper"/>
+                          <xs:enumeration value="steel"/>
+                          <xs:enumeration value="cast iron"/>
+                          <xs:enumeration value="silver"/>
+                          <xs:enumeration value="iron"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Handle">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="wood"/>
+                          <xs:enumeration value="metal"/>
+                          <xs:enumeration value="plastic"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="WoodType" type="xs:string"/>
+                    <xs:element type="xs:boolean" name="Bloodstream"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:boolean" name="Value"/>
+            </xs:sequence>
+            <xs:attribute type="xs:ID" use="required" name="ID"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

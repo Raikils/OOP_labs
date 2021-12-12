@@ -1,5 +1,7 @@
 package game;
 
+import java.lang.Math;
+
 public class BattleField {
     private int[][] field;
 
@@ -9,7 +11,6 @@ public class BattleField {
         int j = 0;
         for(i = 0; i < 10; i++)
             for(j = 0; j < 10; j++) field[i][j] = 0;
-        //Arrays.fill(field, 0);
     }
 
     public int getCellValue(int i, int j) {
@@ -70,5 +71,48 @@ public class BattleField {
         }
     }
 
+    public void printField() {
+        System.out.println(field);
+    }
 
+    public void generateShips() {
+        int i = 0;
+        int j = 0;
+        int numberOfShips = 0;
+        double rand = 0f;
+        boolean vertical = true;
+        for(i = 0; i < 10; i++)
+            for(j = 0; j < 10; j++) field[i][j] = 0;
+        while (numberOfShips < 1) {
+            i = (int)Math.round(Math.random() * 10);
+            j = (int)Math.round(Math.random() * 10);
+            rand = Math.random();
+            if (rand > 0.5f) vertical = true; else vertical = false;
+            if (this.addShip(i, j, 4, vertical)) numberOfShips++;
+        }
+        numberOfShips = 0;
+        while (numberOfShips < 2) {
+            i = (int)Math.round(Math.random() * 10);
+            j = (int)Math.round(Math.random() * 10);
+            rand = Math.random();
+            if (rand > 0.5f) vertical = true; else vertical = false;
+            if (this.addShip(i, j, 3, vertical)) numberOfShips++;
+        }
+        numberOfShips = 0;
+        while (numberOfShips < 3) {
+            i = (int)Math.round(Math.random() * 10);
+            j = (int)Math.round(Math.random() * 10);
+            rand = Math.random();
+            if (rand > 0.5f) vertical = true; else vertical = false;
+            if (this.addShip(i, j, 2, vertical)) numberOfShips++;
+        }
+        numberOfShips = 0;
+        while (numberOfShips < 4) {
+            i = (int)Math.round(Math.random() * 10);
+            j = (int)Math.round(Math.random() * 10);
+            rand = Math.random();
+            if (rand > 0.5f) vertical = true; else vertical = false;
+            if (this.addShip(i, j, 1, vertical)) numberOfShips++;
+        }
+    }
 }

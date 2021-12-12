@@ -24,6 +24,7 @@ public class Field extends AppCompatActivity {
     private Button[][] computerButtons;
 
     private boolean vertical = true;
+    private boolean turn = false;
 
     private BattleField playerField = new BattleField();
     private BattleField computerField = new BattleField();
@@ -1301,6 +1302,8 @@ public class Field extends AppCompatActivity {
                 onComputerButtonClick(9, 9);
             }
         });
+
+        computerField.generateShips();
     }
 
     private void onPlayerButtonClick(int i, int j) {
@@ -1436,6 +1439,7 @@ public class Field extends AppCompatActivity {
     }
 
     public void onReverseButtonClick(View v) {
+        turn = false;
         if (status == Status.GAME) return;
         TextView textView = (TextView)findViewById(R.id.textShip);
         String text = "Ship: ";
@@ -1455,6 +1459,8 @@ public class Field extends AppCompatActivity {
 
     private void onComputerButtonClick(int i, int j) {
         if(status != Status.GAME) return;
+        if (turn) return;
+        turn = true;
         int cellStatus = computerField.shootCell(i, j);
         int[] move = new int[2];
         if(cellStatus < 0) return;
@@ -1469,19 +1475,22 @@ public class Field extends AppCompatActivity {
                 return;
             }
         }
+        ai.setOpponentField(playerField);
+        //move = ai.smartMove();
         move = ai.move();
         cellStatus = playerField.shootCell(move[0], move[1]);
         if(cellStatus == 0) {
-            paintCell(playerButtons[i][j], Color.YELLOW);
+            paintCell(playerButtons[move[0]][move[1]], Color.YELLOW);
         }
         if(cellStatus == 1) {
-            paintCell(playerButtons[i][j], Color.RED);
+            paintCell(playerButtons[move[0]][move[1]], Color.RED);
             if(playerField.checkLose()) {
                 status = Status.END;
                 Toast.makeText(Field.this, "You lose", Toast.LENGTH_LONG).show();
                 return;
             }
         }
+        turn = false;
     }
 
     private void paintCell(Button cell, int color) {

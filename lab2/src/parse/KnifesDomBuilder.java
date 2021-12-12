@@ -41,17 +41,17 @@ public class KnifesDomBuilder extends AbstractKnifesBuilder {
         try {
             doc = docBuilder.parse(filename);
             Element root = doc.getDocumentElement();
-            NodeList studentsList = root.getElementsByTagName("Knife");
-            for (int i = 0; i < studentsList.getLength(); i++) {
-                Element studentElement = (Element) studentsList.item(i);
-                Knife student = buildStudent(studentElement);
-                knifes.add(student);
+            NodeList knifesList = root.getElementsByTagName("Knife");
+            for (int i = 0; i < knifesList.getLength(); i++) {
+                Element studentElement = (Element) knifesList.item(i);
+                Knife knife = buildKnife(studentElement);
+                knifes.add(knife);
             }
         } catch (IOException | SAXException e) {
             e.printStackTrace(); // log
         }
     }
-    private Knife buildStudent(Element knifeElement) {
+    private Knife buildKnife(Element knifeElement) {
         Knife knife = new Knife();
         knife.setId(knifeElement.getAttribute("ID"));
         knife.setType(getElementTextContent(knifeElement, "Type"));

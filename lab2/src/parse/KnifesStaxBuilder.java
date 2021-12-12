@@ -4,30 +4,33 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import com.classes.Knife;
-import com.classes.Visual;
+import main.Knife;
+import main.Visual;
+import java.util.Comparator;
 
 public class KnifesStaxBuilder extends AbstractKnifesBuilder {
-    private Set<Knife> knifes;
+    private ArrayList<Knife> knifes;
     private XMLInputFactory inputFactory;
+    private Comparator<Knife> comparator;
     public KnifesStaxBuilder() {
+        comparator = (o1, o2) -> o1.getId().compareTo(o2.getId());
         inputFactory = XMLInputFactory.newInstance();
-        knifes = new HashSet<Knife>();
+        knifes = new ArrayList<Knife>();
     }
-    public KnifesStaxBuilder(Set<Knife> knifes) {
+    public KnifesStaxBuilder(ArrayList<Knife> knifes) {
         super(knifes);
     }
-    public Set<Knife> getKnifes() {
+    public ArrayList<Knife> getKnifes() {
+        knifes.sort(comparator);
         return knifes;
     }
     @Override
-    public void buildSetKnifes(String filename) {
+    public void buildListKnifes(String filename) {
         XMLStreamReader reader;
         String name;
         try (FileInputStream inputStream = new FileInputStream(new File(filename))) {

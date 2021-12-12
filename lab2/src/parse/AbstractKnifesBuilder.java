@@ -1,20 +1,18 @@
 package parse;
 
-import com.classes.Knife;
-import com.classes.Visual;
-import java.util.Set;
-import java.util.HashSet;
+import main.Knife;
+import java.util.ArrayList;
 
 public abstract class AbstractKnifesBuilder {
-    protected Set<Knife> knifes;
+    protected ArrayList<Knife> knifes;
     public AbstractKnifesBuilder() {
-        knifes = new HashSet<Knife>();
+        knifes = new ArrayList<Knife>();
     }
-    public AbstractKnifesBuilder(Set<Knife> students) {
+    public AbstractKnifesBuilder(ArrayList<Knife> students) {
         this.knifes = students;
     }
-    public Set<Knife> getKnifes() {
+    public ArrayList<Knife> getKnifes() {
         return knifes;
     }
-    public abstract void buildSetKnifes(String filename);
+    public abstract void buildListKnifes(String filename);
 }

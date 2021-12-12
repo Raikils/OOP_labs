@@ -1,8 +1,7 @@
 package parse;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,29 +10,33 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import com.classes.Knife;
-import com.classes.Visual;
+import main.Knife;
+import main.Visual;
+import java.util.Comparator;
 
 public class KnifesDomBuilder extends AbstractKnifesBuilder {
-    private Set<Knife> knifes;
+    private ArrayList<Knife> knifes;
     private DocumentBuilder docBuilder;
+    private Comparator<Knife> comparator;
     public KnifesDomBuilder() {
-        knifes = new HashSet<Knife>();
+        knifes = new ArrayList<Knife>();
+        comparator = (o1, o2) -> o1.getId().compareTo(o2.getId());
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace(); // log
+            e.printStackTrace();
         }
     }
-    public KnifesDomBuilder(Set<Knife> knifes) {
+    public KnifesDomBuilder(ArrayList<Knife> knifes) {
         super(knifes);
     }
-    public Set<Knife> getKnifes() {
+    public ArrayList<Knife> getKnifes() {
+        knifes.sort(comparator);
         return knifes;
     }
     @Override
-    public void buildSetKnifes(String filename) {
+    public void buildListKnifes(String filename) {
         Document doc;
         try {
             doc = docBuilder.parse(filename);

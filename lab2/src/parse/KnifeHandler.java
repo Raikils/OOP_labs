@@ -1,23 +1,22 @@
 package parse;
 
-import com.classes.Knife;
+import main.Knife;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class KnifeHandler extends DefaultHandler  {
-    private Set<Knife> knifes;
+    private ArrayList<Knife> knifes;
     private Knife current;
     private KnifeXmlTag currentXmlTag;
     private EnumSet<KnifeXmlTag> withText;
     private static final String ELEMENT_KNIFE = "Knife";
     public KnifeHandler() {
-        knifes = new HashSet<Knife>();
+        knifes = new ArrayList<Knife>();
         withText = EnumSet.range(KnifeXmlTag.TYPE, KnifeXmlTag.VALUE);
     }
-    public Set<Knife> getKnifes() {
+    public ArrayList<Knife> getKnifes() {
         return knifes;
     }
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
